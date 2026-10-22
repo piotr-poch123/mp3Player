@@ -1,0 +1,301 @@
+/*body{
+    display:flex;
+    flex-direction:column;
+    text-align:center;
+    margin:0;
+    background-color: black;
+    color: #00b300;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;   
+}
+#nowPlaying{
+    font-size: 20px;
+    padding-top: 0;
+    margin-top: 0;
+    border-bottom: 2px solid;
+    margin-bottom: 0;
+}
+#cover{
+    max-width: 200px;
+    max-height:200px;
+}
+.controlMenu{
+    margin-top: auto;
+    border: 5px solid #00b300;
+    margin-bottom:20px;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    width: 350px;
+    align-self: center;
+
+    
+
+
+}
+#login{
+    align-self: center;
+    
+    border-radius:8%;
+    border: none;
+    outline: none;
+    background: none;
+
+    background-color: #1ed760;
+    color: #ffffff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+
+    padding: 5px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease-in-out;
+    
+}
+#login:hover{
+    background-color:  #208000;
+    transform: translateY(-1px);
+    
+}
+#title{
+    margin:0;
+
+}
+.songDetails{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #00b300;
+    margin: 0px;
+    margin-left: 15px;
+    margin-right: 15px;
+    min-height: 250px;
+
+}
+*/
+/* Retro MP3 player: brushed-metal body, green LCD screen, click wheel.
+   The <body> is the device itself, so no HTML changes are needed. */
+
+/* Pixel-style LCD font (needs internet; falls back to monospace if offline) */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+  --desk: #15171b;
+  --shell-hi: #e2e4e8;
+  --shell-lo: #8f959d;
+  --bezel: #26292e;
+  --lcd: #a9bb91;
+  --lcd-ink: #1d2917;
+  --lcd-bar: #2e3b27;
+  --lcd-bar-ink: #c9dbb0;
+  --wheel: #eceef1;
+  --wheel-edge: #7f858d;
+  --font: 'VT323', 'Lucida Console', 'Courier New', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--desk);
+  overflow-x: hidden;
+}
+
+/* ---------- Device body ---------- */
+body {
+  width: min(340px, calc(100% - 24px));
+  margin: 12px auto;
+  padding: 22px 20px 30px;
+  font-family: var(--font);
+  text-align: center;
+  color: var(--lcd-ink);
+  /* brushed metal: fine vertical streaks over a soft diagonal gradient */
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.07) 0 1px, transparent 1px 3px),
+    linear-gradient(155deg, var(--shell-hi), var(--shell-lo));
+  border: 2px solid #60656c;
+  border-radius: 30px 30px 44px 44px;
+  box-shadow:
+    inset 0 2px 0 #fff,
+    inset 0 -6px 12px rgba(0, 0, 0, 0.25),
+    0 14px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- LCD screen (title bar + status line + song area) ---------- */
+#nowPlaying,
+#info,
+.songDetails {
+  margin: 0;
+  background-color: var(--lcd);
+  border: 0 solid var(--bezel);
+  border-left-width: 6px;
+  border-right-width: 6px;
+}
+
+#nowPlaying {
+  padding: 2px 10px;
+  font-size: 1.3rem;
+  font-weight: normal;
+  letter-spacing: 2px;
+  text-align: left;
+  color: var(--lcd-bar-ink);
+  background-color: var(--lcd-bar);
+  border-top-width: 6px;
+  border-radius: 10px 10px 0 0;
+}
+
+#info {
+  padding: 4px 10px;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+#info:empty {
+  display: none;
+}
+
+.songDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 220px;
+  padding: 14px 12px 16px;
+  border-bottom-width: 6px;
+  border-radius: 0 0 10px 10px;
+  /* faint scanlines + darkened edges so it reads as an LCD */
+  background-image: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.06) 0 1px, transparent 1px 3px);
+  box-shadow: inset 0 0 24px rgba(30, 45, 20, 0.45);
+}
+
+#cover {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  image-rendering: pixelated;
+  border: 2px solid var(--lcd-ink);
+}
+
+#cover[src=""] {
+  display: none;
+}
+
+#title,
+#artist {
+  max-width: 100%;
+  margin: 0;
+  font-weight: normal;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#title {
+  margin-top: 4px;
+  font-size: 1.8rem;
+}
+
+#artist {
+  font-size: 1.3rem;
+  opacity: 0.75;
+}
+
+/* ---------- Login button: chunky physical key ---------- */
+#login {
+  font-family: var(--font);
+  font-size: 1.4rem;
+  padding: 6px 18px;
+  color: #06210f;
+  background: #1ed760;
+  border: 2px solid #0a4d22;
+  border-radius: 6px;
+  box-shadow: 0 4px 0 #0a4d22;
+  cursor: pointer;
+}
+
+#login:hover {
+  background: #3be477;
+}
+
+#login:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #0a4d22;
+}
+
+#login:focus-visible {
+  outline: 2px dashed var(--lcd-ink);
+  outline-offset: 3px;
+}
+
+/* ---------- Click wheel ---------- */
+.controlMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+    width: 230px;
+    aspect-ratio: 1;
+    margin: 28px auto 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff, var(--wheel) 45%, #c4c8ce);
+    border: 2px solid var(--wheel-edge);
+    box-shadow:
+        inset 0 -4px 8px rgba(0, 0, 0, 0.2),
+        0 3px 6px rgba(0, 0, 0, 0.35);
+    .middleMenu {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    
+    .playButtonContainer {
+        background:
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.07) 0 1px, transparent 1px 3px),
+        linear-gradient(155deg, var(--shell-hi), var(--shell-lo));
+        width:90px;
+        height:90px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    }
+}
+#fastForward{
+    max-width:45px;
+}
+#pause{
+    max-width:65px;
+}
+#play{
+    max-width: 45px;
+}
+#backward{
+    max-width:45px;
+}
+#volUp{
+    max-width: 70px;
+}
+#volDown {
+    max-width: 35px;
+}
+
+/* the "text" heading becomes the MENU label at the top of the wheel */
+.controlMenu h1 {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: #5b6068;
+}

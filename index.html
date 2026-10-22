@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electron App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 id="nowPlaying">Now Playing</h1>
+    <p id="info"></p>
+    <div class="songDetails">
+        <button id ="login">Login to Spotify</button>
+        <img id="cover" src="" alt="">
+        <h2 id = "title"></h2>
+        <h2 id = "artist"></h2>
+    </div>
+    <div class="controlMenu">
+        <img id="volUp" src="imgs/volUp.png" alt="Volume Up">
+        <div class="middleMenu">
+            <img id="backward" src="imgs/backward.png" alt="Backward">
+            <div class="playButtonContainer">
+                <img id ="pause" src="imgs/pause-button.png" alt="Pause-button">
+                <img id ="play" style="display: none;" src ="imgs/play-button.png" alt="Play-button">
+            </div>
+            <img id="fastForward" src="imgs/fast-forward.png" alt="Fast Forward">
+        </div>
+        <img id="volDown" src="imgs/volDown.png" alt="Volume Down">
+    </div>
+<script src="./renderer.js"></script>
+</body>
+
+</html>
