@@ -19,3 +19,7 @@ A desktop application built with Electron and JavaScript that connects to Spotif
 
 ## Purpose
 Built to practice desktop application development, API integration, OAuth authentication, and communication between Electron's main and renderer processes.
+
+<img width="707" height="960" alt="Screenshot 2026-10-21 235816" src="https://github.com/user-attachments/assets/8273374d-7b25-410c-89f0-5fc0b414bbed" />
+
+<img width="625" height="950" alt="Screenshot 2026-10-21 235948" src="https://github.com/user-attachments/assets/ffaca7c5-5a6d-4e71-aefc-37b8d103f7c8" />
