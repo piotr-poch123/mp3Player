@@ -6,7 +6,7 @@ A desktop application built with Electron and JavaScript that connects to Spotif
 - Spotify account authentication using OAuth 2.0 with PKCE
 - Displays the currently playing song
 - Updates playback information periodically
-- Playback controls, including play, pause, and skip
+- Playback controls, including play, pause, skip, and rewind
 - Volume adjustment through Spotify's Web API
 
 ## Technologies
